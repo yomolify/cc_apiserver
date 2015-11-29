@@ -1,10 +1,16 @@
-import express from 'express'
-import morgan from 'morgan'
+var express = require('express')
+var morgan = require('morgan')
 import {apiV1} from './routes'
+var bodyParser = require('body-parser')
+var response = require('./helpers/responseHelper')
 
-const app = express()
+var app = express()
+app.use(morgan('tiny'))
+app.use(bodyParser.json())
+
 app.use('/api', apiV1)
+app.use(response.catchErrors)
 
-const PORT = process.env.PORT || 4000
+var PORT = process.env.PORT || 4000
 app.listen(PORT)
 console.log(`app listening on ${PORT}`)
