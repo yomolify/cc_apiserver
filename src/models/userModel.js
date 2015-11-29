@@ -31,5 +31,14 @@ module.exports = User = db.Model.extend({
       return false
     }
     return true
+  },
+
+  serialize: function () {
+    return {
+      email: this.get('email'),
+      id: this.get('id'),
+      created_at: this.get('created_at'),
+      updated_at: this.get('updated_at')
+    }
   }
 })
