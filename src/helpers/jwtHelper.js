@@ -25,7 +25,7 @@ function parseToken(req, res, next) {
   var token = req.get('auth-token')
   return verify(token).then(function (decodedToken) {
     req.decodedToken = decodedToken
-  }).finally(function() {
+  }).catch(function() {}).finally(function() {
     return next()
   })
 }
