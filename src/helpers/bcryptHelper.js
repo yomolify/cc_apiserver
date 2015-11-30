@@ -15,9 +15,9 @@ function genPasswordHash (password) {
 }
 
 // Load hash from your password DB.
-function comparePasswordHash (hash) {
+function comparePasswordHash (password, hash) {
   return new Promise(function (resolve, reject) {
-    bcrypt.compare('B4c0/\/', hash, function(err, res) {
+    bcrypt.compare(password, hash, function(err, res) {
       if (err) {
         return reject(err)
       }
