@@ -1,5 +1,5 @@
 var Router = require('express')
-var User = require('../models/userModel')
+var User = require('../models/mongo_userModel')
 var httpCodes = require('../helpers/httpCodesHelper')
 var pgErrors = require('../helpers/pgErrorHelper')
 var respond = require('../helpers/responseHelper')
@@ -51,49 +51,25 @@ function reissueToken (req, res, next) {
 
 }
 
-function validateSignupInput (req, res, next) {
-  var user = new User
-
-  if (!user.validateEmail(req.body.email)) {
-    return next(httpCodes('badRequest', 'invalid email'))
-  }
-
-  if (!user.validatePasswordLength(req.body.password)) {
-    return next(httpCodes('badRequest', 'password too short'))
-  }
-
-  return next()
-}
-
 function signup (req, res, next) {
   var email = req.body.email
   var password = req.body.password
 
-  return bcrypt.genPasswordHash(password)
-  .then(function (hash) {
-    var user = new User({email: email, password: hash})
+  var user = new User({email: email, password: password})
 
-    return user.save().then(function (user) {
-      // this uses User#serialize to prepare user object for response
-      res.locals.data = user
+  user.save(function (err) {
+    if (err) {
+      return next(httpCodes('badRequest'))
+    }
 
-      return respond.sendSuccess(res)
-    }).catch(function (err) {
-      if (err.code === pgErrors.KEY_EXISTS) {
-        return next(httpCodes('badRequest', 'email already exists'))
-      }
-
-      return next(httpCodes('serverError'))
-    })
-  }).catch(function (err){
-    return next(httpCodes('serverError'))
+    respond.sendSuccess(res)
   })
 }
 
 const auth = new Router
 auth.post('/login', login)
 auth.post('/logout', logout)
-auth.post('/signup', validateSignupInput, signup)
+auth.post('/signup', /*validateSignupInput,*/ signup)
 auth.get('/validate', validateToken)
 
 export {auth}

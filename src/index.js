@@ -4,6 +4,7 @@ import {apiV1} from './routes'
 var bodyParser = require('body-parser')
 var response = require('./helpers/responseHelper')
 var jwt = require('./helpers/jwtHelper')
+require('./helpers/mongodbHelper')
 
 var app = express()
 app.use(morgan('tiny'))
