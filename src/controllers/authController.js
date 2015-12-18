@@ -9,29 +9,16 @@ var jwt = require('../helpers/jwtHelper')
 function login (req, res, next) {
   var email = req.body.email
   var password = req.body.password
-  var user = new User({email: email})
-
-  return user.fetch().then(function (user) {
-    if (!user) {
-      return next(httpCodes('unauthorized'))
-    }
-
-    var hash = user.get('password')
-
-    bcrypt.comparePasswordHash(password, hash)
-    .then(function () {
-      return jwt.sign(user.toJSON()).then(function(token) {
-        res.locals.data = {
-          token: token
-        }
-
-        respond.sendSuccess(res)
-      })
-    }).catch(function () {
-      return next(httpCodes('unauthorized'))
+  User.findOne({email: email}, function(err, user) {
+    if (err) return next(httpCodes('serverError'));
+    if (!user) return next(httpCodes('notFound'));
+    user.comparePassword(password, function (err, isMatch) {
+      if (err) return next(httpCodes('serverError'));
+      if (!isMatch) {
+        return next(httpCodes('unauthorized'));
+      }
+      return signAndSendToken(res, user)
     })
-  }).catch(function (err) {
-    return next(httpCodes('serverError'))
   })
 }
 
@@ -47,6 +34,15 @@ function validateToken (req, res, next) {
   return next(httpCodes('ok'))
 }
 
+function signAndSendToken(res, user) {
+  jwt.sign(user.toJSON()).then(function(token) {
+    res.locals.data = {
+      token: token
+    }
+
+    respond.sendSuccess(res)
+  })
+}
 
 function signup (req, res, next) {
   var email = req.body.email
@@ -59,13 +55,7 @@ function signup (req, res, next) {
       return next(httpCodes('badRequest'))
     }
 
-    return jwt.sign(user.toJSON()).then(function(token) {
-      res.locals.data = {
-        token: token
-      }
-
-      respond.sendSuccess(res)
-    })
+    return signAndSendToken(res, user)
   })
 }
 
