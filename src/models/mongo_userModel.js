@@ -60,12 +60,14 @@ userSchema.pre('save', function (next){
   })
 })
 
-userSchema.set('toJSON', { transform: function (doc, ret, options) {
-  var returnDoc = {}
-  returnDoc._id = ret._id
-  returnDoc.email = ret.email
-  return returnDoc
-} });
+userSchema.set('toJSON', {
+  transform: function (doc, ret, options) {
+    var returnDoc = {}
+    returnDoc._id = ret._id
+    returnDoc.email = ret.email
+    return returnDoc
+  }
+});
 
 var User = mongoose.model('User', userSchema);
 
