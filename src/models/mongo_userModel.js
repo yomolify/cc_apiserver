@@ -28,6 +28,10 @@ var userSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  emailVerified: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -55,8 +59,6 @@ userSchema.pre('save', function (next){
     });
   })
 })
-
-
 
 var User = mongoose.model('User', userSchema);
 

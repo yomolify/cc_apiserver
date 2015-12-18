@@ -47,9 +47,6 @@ function validateToken (req, res, next) {
   return next(httpCodes('ok'))
 }
 
-function reissueToken (req, res, next) {
-
-}
 
 function signup (req, res, next) {
   var email = req.body.email
@@ -62,14 +59,20 @@ function signup (req, res, next) {
       return next(httpCodes('badRequest'))
     }
 
-    respond.sendSuccess(res)
+    return jwt.sign(user.toJSON()).then(function(token) {
+      res.locals.data = {
+        token: token
+      }
+
+      respond.sendSuccess(res)
+    })
   })
 }
 
 const auth = new Router
 auth.post('/login', login)
 auth.post('/logout', logout)
-auth.post('/signup', /*validateSignupInput,*/ signup)
+auth.post('/signup', signup)
 auth.get('/validate', validateToken)
 
 export {auth}
