@@ -22,10 +22,6 @@ function login (req, res, next) {
   })
 }
 
-function logout (req, res, next) {
-
-}
-
 function validateToken (req, res, next) {
   if (!req.decodedToken) {
     return next(httpCodes('unauthorized'))
@@ -59,10 +55,8 @@ function signup (req, res, next) {
   })
 }
 
-const auth = new Router
+var auth = new Router
 auth.post('/login', login)
-auth.post('/logout', logout)
 auth.post('/signup', signup)
-auth.get('/validate', validateToken)
 
-export {auth}
+module.exports = auth

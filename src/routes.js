@@ -1,10 +1,10 @@
-import Router from 'express'
-import {auth} from './controllers/authController'
+var Router = require('express').Router
 
 var practitioners = require('./controllers/practitionerController')
+var auth = require('./controllers/authController')
 
 
-const apiV1 = new Router
+var apiV1 = new Router
 apiV1.use('/v1/auth', auth)
 apiV1.use('/v1/practitioners', practitioners)
 
