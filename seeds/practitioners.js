@@ -1,22 +1,165 @@
+var Practitioner = require('../src/models/practitionerModel')
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/cc_users');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
-exports.seed = function(knex, Promise) {
-  var practitioners = 'practitioners'
-  return Promise.join(
-    // Deletes ALL existing entries
-    knex(practitioners).del(),
+var data = {
+  "Practitioners": [
+    {
+      "FirstName": "Angela",
+      "LastName": "Lai",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Coquitlam Centre Dental Clinic",
+        "Address": "1244 - 2929 Barnet Highway",
+        "Neighborhood": "Coquitlam Center",
+        "City": "Coquitlam"
+      }
+    },
+    {
+      "FirstName": "Marica",
+      "LastName": "Szeleczki",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "The Tooth Whisperer",
+        "Address": "108 W. 2nd St",
+        "Neighborhood": "North Vancouver",
+        "City": "North Vancouver"
+      }
+    },
+    {
+      "FirstName": "Rod",
+      "LastName": "Chow",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Victoria Park Dental",
+        "Address": "103-1111 Lonsdale Ave.",
+        "Neighborhood": "North Vancouver",
+        "City": "North Vancouver"
+      }
+    },
+    {
+      "FirstName": "Rob",
+      "LastName": "Gardiner",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Garibaldi Dental",
+        "Address": "38133 Cleveland Ave",
+        "Neighborhood": "Squamish",
+        "City": "Squamish"
+      }
+    },
+    {
+      "FirstName": "Mary",
+      "LastName": "Campbell",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Fairmont Dentistry",
+        "Address": "1008 - 750 West Broadway",
+        "Neighborhood": "Van West",
+        "City": "Vancouver"
+      }
+    },
+    {
+      "FirstName": "Alisa",
+      "LastName": "Lange",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Star Dental",
+        "Address": "1215 - 750 W. Broadway",
+        "Neighborhood": "Van West",
+        "City": "Vancouver"
+      }
+    },
+    {
+      "FirstName": "Keith",
+      "LastName": "Lim",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Abba Dental ",
+        "Address": "603 - 1160 Burrard St",
+        "Neighborhood": "Vancouver Downtown",
+        "City": "Vancouver"
+      }
+    },
+    {
+      "FirstName": "Parviz",
+      "LastName": "Roshanzamir",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Wall Center Dental",
+        "Address": "1065 Hornby St",
+        "Neighborhood": "Vancouver Downtown",
+        "City": "Vancouver"
+      }
+    },
+    {
+      "FirstName": "R.",
+      "LastName": "Chaudhry",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Dental & Implant Clinic @ Lansdowne",
+        "Address": "617 - 5300 No. 3 Rd.",
+        "Neighborhood": "Richmond",
+        "City": "Richmond"
+      }
+    },
+    {
+      "FirstName": "Bonbon",
+      "LastName": "Hu",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "A Smile Dental",
+        "Address": "4994A 48th Ave.",
+        "Neighborhood": "Delta",
+        "City": "Delta"
+      }
+    },
+    {
+      "FirstName": "Danial",
+      "LastName": "Deheshi",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Norburn Dental",
+        "Address": "3976 E. Hastings St.",
+        "Neighborhood": "Burnaby",
+        "City": "Burnaby"
+      }
+    },
+    {
+      "FirstName": "Colin",
+      "LastName": "Hughes",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Creekside Dental Clinic",
+        "Address": "#5 - 757 KLO Road",
+        "Neighborhood": "Kelowna",
+        "City": "Kelowna"
+      }
+    },
+    {
+      "FirstName": "Amir",
+      "LastName": "Hughes",
+      "Specialization": "Dentist",
+      "Practice": {
+        "Name": "Amir Dental Clinic",
+        "Address": "567 Road",
+        "Neighborhood": "Kelowna",
+        "City": "Kelowna"
+      }
+    }
+  ]
+}
 
-    // Inserts seed entries
-    knex(practitioners).insert({id: 1, first_name: 'Angela', last_name: 'Lai', bio: '', practice_id: 1}),
-    knex(practitioners).insert({id: 2, first_name: 'Marica', last_name: 'Szeleczki', bio: '', practice_id: 2}),
-    knex(practitioners).insert({id: 3, first_name: 'Rod', last_name: 'Chow', bio: '', practice_id: 3}),
-    knex(practitioners).insert({id: 4, first_name: 'Rob', last_name: 'Gardiner', bio: '', practice_id: 4}),
-    knex(practitioners).insert({id: 5, first_name: 'Mary', last_name: 'Campbell', bio: '', practice_id: 5}),
-    knex(practitioners).insert({id: 6, first_name: 'Alisa', last_name: 'Lange', bio: '', practice_id: 6}),
-    knex(practitioners).insert({id: 7, first_name: 'Keith', last_name: 'Lim', bio: '', practice_id: 7}),
-    knex(practitioners).insert({id: 8, first_name: 'Parviz', last_name: 'Roshanzamir', bio: '', practice_id: 8}),
-    knex(practitioners).insert({id: 9, first_name: 'R.', last_name: 'Chaudhry', bio: '', practice_id: 9}),
-    knex(practitioners).insert({id: 10, first_name: 'Bonbon', last_name: 'Hu', bio: '', practice_id: 10}),
-    knex(practitioners).insert({id: 11, first_name: 'Danial', last_name: 'Deheshi', bio: '', practice_id: 11}),
-    knex(practitioners).insert({id: 12, first_name: 'Colin', last_name: 'Hughes', bio: '', practice_id: 12})
-  );
-};
+db.once('open', function (callback) {
+  data.Practitioners.forEach(function(prac) {
+    new Practitioner(prac).save(function (err, model) {
+      if (err) {
+        return console.log(err)
+      }
+
+      console.log(model)
+    })
+  })
+});

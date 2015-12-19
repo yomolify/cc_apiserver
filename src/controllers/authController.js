@@ -1,9 +1,8 @@
 var Router = require('express')
 var User = require('../models/mongo_userModel')
 var httpCodes = require('../helpers/httpCodesHelper')
-var pgErrors = require('../helpers/pgErrorHelper')
 var respond = require('../helpers/responseHelper')
-var bcrypt = require('../helpers/bcryptHelper')
+var pgErrors = require('../helpers/pgErrorHelper')
 var jwt = require('../helpers/jwtHelper')
 
 function login (req, res, next) {
