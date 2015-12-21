@@ -1,1 +1,3 @@
-{"jwt_secret": "YOUR_SECRET_HERE"}
+{"jwt_secret": "YOUR_SECRET_HERE",
+"mailgun_api_key":"xxxxxxxxxxxxxx",
+"mailgun_domain": "xxxxxxxxxxxxxx.mailgun.org"}

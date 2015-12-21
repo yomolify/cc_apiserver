@@ -1,5 +1,5 @@
 var Slot = require('../models/slotModel')
-
+var mailgun = require('../helpers/emailHelper')
 var httpCodes = require('../helpers/httpCodesHelper')
 var respond = require('../helpers/responseHelper')
 
@@ -31,9 +31,25 @@ function create (req, res, next) {
         return next(httpCodes('serverError'))
       }
 
-      res.locals.data = slot.toJSON()
+      var slotData = slot.toJSON()
+      res.locals.data = slotData
       respond.sendSuccess(res)
+      sendEmail(req.decodedToken, slotData)
     })
+  })
+}
+
+function sendEmail(user, slot){
+  console.log('sending email to %s', user.email)
+  var data = {
+    from: 'Carecru <me@samples.mailgun.org>',
+    to: 'ashmeet.sidhu7@gmail.com' || user.email,
+    subject: 'Appointment booked',
+    text: JSON.stringify(slot)
+  }
+
+  mailgun.messages().send(data, function (error, body) {
+    console.log(body);
   })
 }
 
