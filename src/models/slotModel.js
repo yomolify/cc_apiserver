@@ -30,6 +30,10 @@ var slotSchema = new Schema({
   available: {
     type: Boolean,
     required: true
+  },
+  _user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 
