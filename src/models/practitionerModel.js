@@ -33,7 +33,11 @@ var practitionerSchema = new Schema({
     type: String,
     required: true
   },
-  Practice: practiceSchema
+  Practice: practiceSchema,
+  Slots:[{
+    type: Schema.Types.ObjectId,
+    ref: 'Slot'
+  }]
 })
 
 var Practitioner = mongoose.model('Practitioner', practitionerSchema);

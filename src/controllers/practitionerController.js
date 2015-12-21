@@ -12,23 +12,55 @@ router.get('/', function (req, res) {
   .find({})
   .exec(function(err, data) {
     data.Time = req.query.time || (new Date).toISOString()
-    res.locals.data = {Practitioners: data}
-    respond.sendSuccess(res)
+    populateSlotsforPracs(data).then(function(data){
+      res.locals.data = {Practitioners: data}
+      respond.sendSuccess(res)
+    })
   })
 })
+
+function populateSlotsforPracs(pracs){
+  return new Promise(function(resolve, reject) {
+    var pracIds = pracs.map(function(prac) {
+      return {
+        _practitioner: prac._id
+      }
+    })
+
+    var pracMap = {}
+    pracs.forEach(function(prac){
+      pracMap[prac._id] = prac.toJSON()
+    })
+
+    Slot.find({
+      $or: pracIds
+    }).exec(function(err, slots){
+      if (err) {
+        // TODO handle error condition
+        console.log(err)
+      } else {
+        slots.forEach(function(slot){
+          pracMap[slot._practitioner].Slots.push(slot.toJSON())
+        })
+      }
+      resolve(Object.keys(pracMap).map(function(id){
+        return pracMap[id]
+      }))
+    })
+  })
+}
 
 // return promise which resolves with slot objects
 function getSlotsForPrac (pracId) {
   return new Promise(function(resolve, reject){
     Slot.find({
-      practitionerId: pracId
+      _practitioner: pracId
     }).exec(function(err, slots){
+      console.log(err)
       return resolve(slots)
     })
   })
 }
-
-getSlotsForPrac('56750289fe70532b369537b1')
 
 router.get('/:id', function (req, res, next) {
   Practitioner
@@ -61,16 +93,5 @@ module.exports = router
 
 // function onOpen (callback) {
 //   Practitioner.find({}).then(function(pracs) {
-//     var pracIds = pracs.map(function(prac) {
-//       return {
-//         practitionerId: prac._id.toString()
-//       }
-//     })
-
-//     Slot.find({
-//       $or: pracIds
-//     }).then(function(slots){
-//       console.log(slots.length)
-//     })
 //   })
 // }

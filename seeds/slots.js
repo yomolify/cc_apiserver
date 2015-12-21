@@ -28,14 +28,14 @@ function timesToSlots (times) {
 function onOpen (callback) {
   Practitioner.find({}).then(function(pracs) {
     pracs.forEach(function(prac) {
-      var pracId = prac._id.toString()
+      var pracId = prac._id
       console.log("Making slots for pracId %s", pracId)
 
       var slots = timesToSlots(times)
       Slot.collection.insert(slots.map(function(slot){
         return {
           bookingTime: slot,
-          practitionerId: pracId
+          _practitioner: pracId
         }
       }))
     })

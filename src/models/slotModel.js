@@ -6,8 +6,9 @@ var slotSchema = new Schema({
     type: String,
     required: true
   },
-  practitionerId: {
-    type: String,
+  _practitioner: {
+    type: Schema.Types.ObjectId,
+    ref: 'Practitioner',
     required: true
   }
 })
