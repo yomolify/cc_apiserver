@@ -35,7 +35,8 @@ function onOpen (callback) {
       Slot.collection.insert(slots.map(function(slot){
         return {
           bookingTime: slot,
-          _practitioner: pracId
+          _practitioner: pracId,
+          available: true
         }
       }))
     })

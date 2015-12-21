@@ -33,7 +33,8 @@ function populateSlotsforPracs(pracs){
     })
 
     Slot.find({
-      $or: pracIds
+      $or: pracIds,
+      available: true
     }).exec(function(err, slots){
       if (err) {
         // TODO handle error condition
@@ -54,7 +55,8 @@ function populateSlotsforPracs(pracs){
 function getSlotsForPrac (pracId) {
   return new Promise(function(resolve, reject){
     Slot.find({
-      _practitioner: pracId
+      _practitioner: pracId,
+      available: true
     }).exec(function(err, slots){
       console.log(err)
       return resolve(slots)

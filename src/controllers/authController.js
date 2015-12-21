@@ -1,5 +1,5 @@
 var Router = require('express')
-var User = require('../models/mongo_userModel')
+var User = require('../models/userModel')
 var httpCodes = require('../helpers/httpCodesHelper')
 var respond = require('../helpers/responseHelper')
 var pgErrors = require('../helpers/pgErrorHelper')
