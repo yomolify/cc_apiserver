@@ -19,6 +19,7 @@ var practiceSchema = new Schema({
   }
 })
 
+
 var practitionerSchema = new Schema({
   FirstName: {
     type: String,
