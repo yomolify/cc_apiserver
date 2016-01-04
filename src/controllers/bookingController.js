@@ -2,6 +2,7 @@ var Slot = require('../models/slotModel')
 var mailgun = require('../helpers/emailHelper')
 var httpCodes = require('../helpers/httpCodesHelper')
 var respond = require('../helpers/responseHelper')
+var moment = require('moment')
 
 var Router = require('express')
 
@@ -31,11 +32,12 @@ function create (req, res, next) {
       if (err) {
         return next(httpCodes('serverError'))
       }
-
-      var slotData = slot.toJSON()
+      Slot.findById(slot).populate('_practitioner').exec(function (err, slot) {
+        var slotData = slot.toJSON()
       res.locals.data = slotData
       respond.sendSuccess(res)
       sendEmail(req.decodedToken, slotData)
+      })
     })
   })
 }
@@ -68,7 +70,8 @@ function sendEmail(user, slot){
     from: 'Carecru <me@samples.mailgun.org>',
     to: user.email,
     subject: 'Appointment booked',
-    text: JSON.stringify(slot)
+    // text: JSON.stringify(slot),
+    html: '<html> Appointment with Dr ' + slot._practitioner.FirstName + ' ' + slot._practitioner.LastName + ' has been booked at ' + moment(slot.bookingTime).format("dddd, MMMM Do YYYY [at] h:mm a") + ' in ' + slot._practitioner.Practice.Name + ' at the address: ' + slot._practitioner.Practice.Address + '.</html>'
   }
 
   mailgun.messages().send(data, function (error, body) {
