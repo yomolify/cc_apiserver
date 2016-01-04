@@ -12,6 +12,27 @@ app.use(bodyParser.json())
 
 app.use('/api', jwt.parseToken)
 
+app.get('/cancel', function(req, res) {
+  return res.sendStatus(200)
+})
+app.get('/loadInfo', function(req, res) {
+  return res.sendStatus(200)
+})
+app.get('/newPatientForm', function(req, res) {
+  return res.sendStatus(200)
+})
+app.get('/returningPatientForm', function(req, res) {
+  return res.sendStatus(200)
+})
+app.get('/sendSelectedTime/:time', function(req, res) {
+  console.log('s', req.params.time)
+  return res.json(req.params.time)
+})
+app.post('/sendSelectedTime/:time', function(req, res) {
+  console.log('s', req.params.time)
+  return res.json(req.params.time)
+})
+
 app.use('/api', apiV1)
 
 app.use(response.catchErrors)

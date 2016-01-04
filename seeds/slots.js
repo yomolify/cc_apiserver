@@ -10,7 +10,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', onOpen);
 
-var times = [9, 10, 11, 12, 13, 14, 15, 16]
+var times = [16, 17, 18, 19, 20, 21, 22, 23]
 
 function timesToSlots (times) {
   var slots = times.slice(0)

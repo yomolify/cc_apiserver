@@ -20,6 +20,7 @@ function create (req, res, next) {
       return next(err)
     }
     if (!slot || !slot.available){
+      console.log('padaake')
       return next(httpCodes('notFound'))
     }
 
@@ -39,20 +40,45 @@ function create (req, res, next) {
   })
 }
 
+function view(req, res, next) {
+  var user = req.params.id;
+  var toReturn = [];
+  Slot.find({available: false}).populate('_practitioner').exec(function(err, slots) {
+    slots.forEach(function(slot) {
+      if (slot._user.toString() === user.toString()) {
+        toReturn.push(slot);
+      }
+    })
+    res.locals.data = toReturn;
+    respond.sendSuccess(res);
+  })
+}
+
+function cancel(req, res, next) {
+  var slotId = req.params.id
+  Slot.findByIdAndUpdate(slotId, {$set: { available: true, _user: null}}).exec(function(err, slot) {
+    res.locals.data = slot;
+    respond.sendSuccess(res);
+  })
+}
+
 function sendEmail(user, slot){
   console.log('sending email to %s', user.email)
   var data = {
     from: 'Carecru <me@samples.mailgun.org>',
-    to: 'ashmeet.sidhu7@gmail.com' || user.email,
+    to: user.email,
     subject: 'Appointment booked',
     text: JSON.stringify(slot)
   }
 
   mailgun.messages().send(data, function (error, body) {
     console.log(body);
+    console.log(error);
   })
 }
 
 router.post('/', authenticate, create)
+router.get('/:id', authenticate, view)
+router.delete('/:id', cancel)
 
 module.exports = router
