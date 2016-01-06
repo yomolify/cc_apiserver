@@ -15,7 +15,7 @@ var times = [16, 17, 18, 19, 20, 21, 22, 23]
 function timesToSlots (times) {
   var slots = times.slice(0)
   return slots.map(function(slot) {
-    return moment()
+    return moment().add(1, 'd')
       .hour(slot)
       .minute(0)
       .second(0)

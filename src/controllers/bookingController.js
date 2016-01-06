@@ -42,6 +42,19 @@ function create (req, res, next) {
   })
 }
 
+function edit (req, res, next) {
+  Slot.findByIdAndUpdate(req.body._slot, { 'patient.firstName': req.body.firstName, 'patient.lastName': req.body.lastName} ).exec(function(err, slot){
+    if (err) {
+      return next(err)
+    }
+
+    console.log('slot', slot)
+    var slotData = slot.toJSON()
+      res.locals.data = slotData
+      respond.sendSuccess(res)
+  })
+}
+
 function view(req, res, next) {
   var user = req.params.id;
   var toReturn = [];
@@ -71,7 +84,7 @@ function sendEmail(user, slot){
     to: user.email,
     subject: 'Appointment booked',
     // text: JSON.stringify(slot),
-    html: '<html> Appointment with Dr ' + slot._practitioner.FirstName + ' ' + slot._practitioner.LastName + ' has been booked at ' + moment(slot.bookingTime).format("dddd, MMMM Do YYYY [at] h:mm a") + ' in ' + slot._practitioner.Practice.Name + ' at the address: ' + slot._practitioner.Practice.Address + '.</html>'
+    html: '<html> Appointment with Dr ' + slot._practitioner.FirstName + ' ' + slot._practitioner.LastName + ' has been booked for ' + moment(slot.bookingTime).format("dddd, MMMM Do YYYY [at] h:mm a") + ' in ' + slot._practitioner.Practice.Name + ' at the address: ' + slot._practitioner.Practice.Address + '.</html>'
   }
 
   mailgun.messages().send(data, function (error, body) {
@@ -81,6 +94,7 @@ function sendEmail(user, slot){
 }
 
 router.post('/', authenticate, create)
+router.put('/', authenticate, edit)
 router.get('/:id', authenticate, view)
 router.delete('/:id', cancel)
 

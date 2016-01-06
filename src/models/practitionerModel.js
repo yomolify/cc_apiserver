@@ -16,9 +16,24 @@ var practiceSchema = new Schema({
   City: {
     type: String,
     required: true
+  },
+  Slogan: {
+    type: String,
+    required: true
+  },
+  Description: {
+    type: String,
+    required: true
+  },
+  Services: {
+    type: [String],
+    required: true
+  },
+  InsuranceProviders: {
+    type: [String],
+    required: true
   }
 })
-
 
 var practitionerSchema = new Schema({
   FirstName: {
@@ -30,7 +45,22 @@ var practitionerSchema = new Schema({
     required: true
   },
   Specialization: {
+    // Needs to be updated in next sprint.
+    // Should read:
+    //    type: [String]
     type: String,
+    required: true
+  },
+  PersonalStatement:{
+    type: String,
+    required: true
+  },
+  Education: {
+    type: String,
+    required: true
+  },
+  Languages: {
+    type: [String],
     required: true
   },
   Practice: practiceSchema,
