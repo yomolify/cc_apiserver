@@ -43,15 +43,19 @@ function create (req, res, next) {
 }
 
 function edit (req, res, next) {
-  Slot.findByIdAndUpdate(req.body._slot, { 'patient.firstName': req.body.firstName, 'patient.lastName': req.body.lastName} ).exec(function(err, slot){
+  Slot.findById(req.body._slot).exec(function(err, slot){
     if (err) {
       return next(err)
     }
 
     console.log('slot', slot)
-    var slotData = slot.toJSON()
+    slot.patient.firstName = req.body.firstName;
+    slot.patient.lastName = req.body.lastName;
+    slot.save(function(err, slot) {
+      var slotData = slot.toJSON()
       res.locals.data = slotData
       respond.sendSuccess(res)
+    })
   })
 }
 
