@@ -17,10 +17,6 @@ var practiceSchema = new Schema({
     type: String,
     required: true
   },
-  Slogan: {
-    type: String,
-    required: true
-  },
   Description: {
     type: String,
     required: true
@@ -32,6 +28,9 @@ var practiceSchema = new Schema({
   InsuranceProviders: {
     type: [String],
     required: true
+  },
+  ImageUrls: {
+    type: [String]
   }
 })
 
@@ -62,6 +61,9 @@ var practitionerSchema = new Schema({
   Languages: {
     type: [String],
     required: true
+  },
+  ImageUrls: {
+    type: [String]
   },
   Practice: practiceSchema,
   Slots:[{

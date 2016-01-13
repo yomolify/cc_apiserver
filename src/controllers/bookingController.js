@@ -20,7 +20,8 @@ function create (req, res, next) {
     if (err) {
       return next(err)
     }
-    if (!slot || !slot.available){
+    console.log('slot found: ', slot)
+    if (!slot){
       console.log('padaake')
       return next(httpCodes('notFound'))
     }
