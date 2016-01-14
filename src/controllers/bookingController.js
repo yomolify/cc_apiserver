@@ -3,7 +3,11 @@ var mailgun = require('../helpers/emailHelper')
 var httpCodes = require('../helpers/httpCodesHelper')
 var respond = require('../helpers/responseHelper')
 var moment = require('moment')
-
+var Path = require('path')
+var Fs = require('fs')
+console.log(". = %s", Path.resolve('.'))
+var email = Fs.readFileSync('./src/mailHtml/action.html', 'utf8');
+console.log('email is: ', email)
 var Router = require('express')
 
 var router = new Router
@@ -20,8 +24,7 @@ function create (req, res, next) {
     if (err) {
       return next(err)
     }
-    console.log('slot found: ', slot)
-    if (!slot){
+    if (!slot || !slot.available){
       console.log('padaake')
       return next(httpCodes('notFound'))
     }
@@ -83,13 +86,23 @@ function cancel(req, res, next) {
 }
 
 function sendEmail(user, slot){
+  var doc = 'Dr ' + slot._practitioner.FirstName + ' ' + slot._practitioner.LastName
+  var docemail = email.replace("Doctor", doc)
+  var time = moment(slot.bookingTime).format("dddd, MMMM Do YYYY [at] h:mm a")
+  var timeemail = docemail.replace("Time", time)
+  var clinic = slot._practitioner.Practice.Name
+  var clinicemail = timeemail.replace("Clinic", clinic)
+  var location =  slot._practitioner.Practice.Address
+  var locationemail = clinicemail.replace("Location", location)
+
   console.log('sending email to %s', user.email)
   var data = {
     from: 'Carecru <me@samples.mailgun.org>',
     to: user.email,
     subject: 'Appointment booked',
     // text: JSON.stringify(slot),
-    html: '<html> Appointment with Dr ' + slot._practitioner.FirstName + ' ' + slot._practitioner.LastName + ' has been booked for ' + moment(slot.bookingTime).format("dddd, MMMM Do YYYY [at] h:mm a") + ' in ' + slot._practitioner.Practice.Name + ' at the address: ' + slot._practitioner.Practice.Address + '.</html>'
+    // html: '<html> Appointment with Dr ' + slot._practitioner.FirstName + ' ' + slot._practitioner.LastName + ' has been booked for ' + moment(slot.bookingTime).format("dddd, MMMM Do YYYY [at] h:mm a") + ' in ' + slot._practitioner.Practice.Name + ' at the address: ' + slot._practitioner.Practice.Address + '.</html>'
+    html: locationemail
   }
 
   mailgun.messages().send(data, function (error, body) {
