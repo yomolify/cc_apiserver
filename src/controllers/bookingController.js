@@ -5,9 +5,7 @@ var respond = require('../helpers/responseHelper')
 var moment = require('moment')
 var Path = require('path')
 var Fs = require('fs')
-console.log(". = %s", Path.resolve('.'))
 var email = Fs.readFileSync('./src/mailHtml/action.html', 'utf8');
-console.log('email is: ', email)
 var Router = require('express')
 
 var router = new Router
@@ -30,14 +28,14 @@ function create (req, res, next) {
     }
 
     slot._user = req.decodedToken._id
-    slot.patient = req.body.patient
+    // slot.patient = req.body.patient
     slot.available = false
     slot.save(function(err){
       if (err) {
         return next(httpCodes('serverError'))
       }
-      Slot.findById(slot).populate('_practitioner').exec(function (err, slot) {
-        var slotData = slot.toJSON()
+      Slot.findById(slot).populate('_practitioner').populate('_user').exec(function (err, slot) {
+      var slotData = slot.toJSON()
       res.locals.data = slotData
       respond.sendSuccess(res)
       sendEmail(req.decodedToken, slotData)
@@ -46,22 +44,22 @@ function create (req, res, next) {
   })
 }
 
-function edit (req, res, next) {
-  Slot.findById(req.body._slot).exec(function(err, slot){
-    if (err) {
-      return next(err)
-    }
+// function edit (req, res, next) {
+//   Slot.findById(req.body._slot).exec(function(err, slot){
+//     if (err) {
+//       return next(err)
+//     }
 
-    console.log('slot', slot)
-    slot.patient.firstName = req.body.firstName;
-    slot.patient.lastName = req.body.lastName;
-    slot.save(function(err, slot) {
-      var slotData = slot.toJSON()
-      res.locals.data = slotData
-      respond.sendSuccess(res)
-    })
-  })
-}
+//     console.log('slot', slot)
+//     slot.patient.firstName = req.body.firstName;
+//     slot.patient.lastName = req.body.lastName;
+//     slot.save(function(err, slot) {
+//       var slotData = slot.toJSON()
+//       res.locals.data = slotData
+//       respond.sendSuccess(res)
+//     })
+//   })
+// }
 
 function view(req, res, next) {
   var user = req.params.id;
@@ -88,7 +86,7 @@ function cancel(req, res, next) {
 function sendEmail(user, slot){
   var doc = 'Dr ' + slot._practitioner.FirstName + ' ' + slot._practitioner.LastName
   var docemail = email.replace("Doctor", doc)
-  var time = moment(slot.bookingTime).format("dddd, MMMM Do YYYY [at] h:mm a")
+  var time = moment(slot.bookingTime).subtract(8, 'hours').format("dddd, MMMM Do YYYY [at] h:mm a")
   var timeemail = docemail.replace("Time", time)
   var clinic = slot._practitioner.Practice.Name
   var clinicemail = timeemail.replace("Clinic", clinic)
@@ -112,7 +110,7 @@ function sendEmail(user, slot){
 }
 
 router.post('/', authenticate, create)
-router.put('/', authenticate, edit)
+// router.put('/', authenticate, edit)
 router.get('/:id', authenticate, view)
 router.delete('/:id', cancel)
 

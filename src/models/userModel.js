@@ -7,23 +7,29 @@ var phoneRegex = /d{10}/
 var SALT_WORK_FACTOR = 10
 
 var userSchema = new Schema({
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
-    unique: true,
-    validate:  {
-      validator: function (email) {
-        return emailRegex.test(email)
-      }
-    }
+    unique: true
   },
   phone:{
+    type: String
+  },
+  gender: {
     type: String,
-    validate:  {
-      validator: function (phone) {
-        return phoneRegex.test(phone)
-      }
-    }
+    required: true
+  },
+  dob: {
+    type: String,
+    required: true
   },
   password: {
     type: String,
@@ -65,6 +71,10 @@ userSchema.set('toJSON', {
     var returnDoc = {}
     returnDoc._id = ret._id
     returnDoc.email = ret.email
+    returnDoc.firstName = ret.firstName
+    returnDoc.lastName = ret.lastName
+    returnDoc.phone = ret.phone
+    returnDoc.dob = ret.dob
     return returnDoc
   }
 });
