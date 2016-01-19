@@ -84,8 +84,10 @@ function cancel(req, res, next) {
 }
 
 function sendEmail(user, slot){
+  var name = user.firstName;
+  var nameemail = email.replace("Name", name)
   var doc = 'Dr ' + slot._practitioner.FirstName + ' ' + slot._practitioner.LastName
-  var docemail = email.replace("Doctor", doc)
+  var docemail = nameemail.replace("Doctor", doc)
   var time = moment(slot.bookingTime).subtract(8, 'hours').format("dddd, MMMM Do YYYY [at] h:mm a")
   var timeemail = docemail.replace("Time", time)
   var clinic = slot._practitioner.Practice.Name
