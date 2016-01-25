@@ -13,7 +13,7 @@ var data = {
       "PersonalStatement": "Marica Szeleczki, Registered Dental Hygienist, is the owner of ToothWhisperer Dental Hygiene. She graduated from Camosun College's dental hygiene program in Victoria in 2002.She has been practicing on the North Shore since graduating and has worked closely with some of the area's best periodontists and dentists. She believes that patients deserve the best dental care, and that's what her independent dental hygiene clinic can provide. Marica is also an accomplished artist where some of her art work are exhibiting around the practice.",
       "Education": "DMD",
       "Languages": ["English"],
-      "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688699/Dr_Marica_Scezelki_kwnyb8.jpg"],
+      "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1453750076/Dr_Marica_mpujlt.jpg"],
       "Practice": {
         "Name": "Tooth Whisperer Dental Hygiene Clinic",
         "Address": "108 2nd St. W, North Vancouver, BC, V7M 1C3",
