@@ -15,7 +15,7 @@ var data = {
       "Languages": ["English"],
       "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1453750076/Dr_Marica_mpujlt.jpg"],
       "Practice": {
-        "Name": "Tooth Whisperer Dental Hygiene Clinic",
+        "Name": "Tooth Whisperer Hygiene Clinic",
         "Address": "108 2nd St. W, North Vancouver, BC, V7M 1C3",
         "Neighborhood": "North Vancouver",
         "City": "North Vancouver",
