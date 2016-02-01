@@ -24,6 +24,7 @@ var data = {
         "Services": ["Emergency Dentistry", "Cosmetic Dentistry", "Prosthodontists", "Sedation Dentistry"],
         "InsuranceProviders": ["Sunlife", "Aetna", "Great-West Life", "Desjardins"],
         "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/c_scale,h_1000/v1452688710/Toothwhisperer_-_Art_qz6jo6.jpg", "http://res.cloudinary.com/carecru/image/upload/c_scale,h_1000/v1452688715/Toothwhisperer_-_front_kvpoun.jpg", "http://res.cloudinary.com/carecru/image/upload/c_scale,h_1000/v1452688713/Toothwhisperer_-Lobby_psc6zt.jpg", "http://res.cloudinary.com/carecru/image/upload/c_scale,h_1000/v1452688716/Toothwhisperer_-Reception_fkciur.jpg", "http://res.cloudinary.com/carecru/image/upload/c_scale,h_1000/v1452688711/Toothwhisperer_-_cleaning_room-1_xrix2j.jpg", "http://res.cloudinary.com/carecru/image/upload/c_scale,h_1000/v1452688711/Toothwhisperer_-_cleaning_room-2_ojsjw4.jpg", "http://res.cloudinary.com/carecru/image/upload/c_scale,h_1000/v1452688711/Toothwhisperer_-_cleaning_room-3_meqko0.jpg", "http://res.cloudinary.com/carecru/image/upload/c_scale,h_1000/v1452688712/Toothwhisperer_-_cleaning_room-4_y3m7kq.jpg"],
+        loc: [-123.07806900000003, 49.31302509999999]
       }
     },
     {
@@ -44,6 +45,8 @@ var data = {
         "Services": ["Emergency Dentistry", "Cosmetic Dentistry", "Prosthodontists", "Sedation Dentistry"],
         "InsuranceProviders": ["Sunlife", "Aetna", "Great-West Life", "Desjardins"],
         "ImageUrls": [],
+        loc: [-123.12838490000001, 49.27925459999999]
+
       }
     },
         {
@@ -64,6 +67,7 @@ var data = {
         "Services": ["Emergency Dentistry", "Cosmetic Dentistry", "Prosthodontists", "Sedation Dentistry"],
         "InsuranceProviders": ["Sunlife", "Aetna", "Great-West Life", "Desjardins"],
         "ImageUrls": [],
+        loc: [-123.12838490000001, 49.27925459999999]
       }
     },
     {
@@ -83,7 +87,8 @@ var data = {
         "Description": "Crafting your healthiest, most radiant smile is both an exacting science and a high art. At Aria Dental Studio, we regard it as our calling. Located at the corner of Burrard and Georgia, Aria is committed to helping Vancouver smile more brightly, more often - and with perfect confidence. From routine oral maintenance to a complete revival of your smile, Aria Dental Studio offers a comprehensive suite of dental services that can be tailored to your unique personal needs. And we pride ourselves on the comfort, ease, and personal nature of the patient’s experience. All designed to give you more confidence, more youthfulness – and of course, a smile that changes everything.",
         "Services": ["Emergency Dentistry", "Cosmetic Dentistry"],
         "InsuranceProviders": ["Sunlife", "Aetna", "Great-West Life", "Desjardins"],
-        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688417/Aria_Dental_Entrance_rb2g0f.png", "http://res.cloudinary.com/carecru/image/upload/v1452688421/Aria_Dental_Reception_m5nxry.png", "http://res.cloudinary.com/carecru/image/upload/v1452688417/Aria_Dental_Lobby_neqmd5.png", "http://res.cloudinary.com/carecru/image/upload/v1452688422/Aria_Dental_ExamRoom_tg28vw.png"]
+        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688417/Aria_Dental_Entrance_rb2g0f.png", "http://res.cloudinary.com/carecru/image/upload/v1452688421/Aria_Dental_Reception_m5nxry.png", "http://res.cloudinary.com/carecru/image/upload/v1452688417/Aria_Dental_Lobby_neqmd5.png", "http://res.cloudinary.com/carecru/image/upload/v1452688422/Aria_Dental_ExamRoom_tg28vw.png"],
+        loc: [-123.12173999999999, 49.284743]
       }
     },
     {
@@ -95,7 +100,7 @@ var data = {
       "Languages": ["English"],
       "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688729/Dr_Roshanzamir_m707jf.jpg"],
       "Practice": {
-        "Name": "Wall Center Dental",
+        "Name": "Wall Centre Dental",
         "Address": "1065 Hornby St, Vancouver, BC V6Z 2S5",
         "Neighborhood": "Vancouver Downtown",
         "City": "Vancouver",
@@ -103,7 +108,8 @@ var data = {
         "Description": "We invite you to become a part of our practice and experience the difference. You will find quality care in our well-appointed office that provides comfort no matter which services you require. Whether you are in for a routine care visit or redesigning your smile with cutting-edge technology, it is our goal to help you have your best dental experience ever!",
         "Services": ["Emergency Dentistry", "Cosmetic Dentistry"],
         "InsuranceProviders": ["Sunlife", "Aetna", "Great-West Life", "Desjardins"],
-        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688743/Wall_center_dental_-_front_suaghn.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_reception_f02z1w.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/Wall_center_dental_-_exam_room_l0kdyo.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_exam_room_2_rcelvt.jpg"]
+        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688743/Wall_center_dental_-_front_suaghn.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_reception_f02z1w.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/Wall_center_dental_-_exam_room_l0kdyo.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_exam_room_2_rcelvt.jpg"],
+        loc: [-123.12587610000003, 49.2801176]
       }
     },
      {
@@ -115,7 +121,7 @@ var data = {
       "Languages": ["English"],
       "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688729/Dr_Baharlo_glhj6c.jpg"],
       "Practice": {
-        "Name": "Wall Center Dental",
+        "Name": "Wall Centre Dental",
         "Address": "1065 Hornby St, Vancouver, BC V6Z 2S5",
         "Neighborhood": "Vancouver Downtown",
         "City": "Vancouver",
@@ -123,7 +129,8 @@ var data = {
         "Description": "We invite you to become a part of our practice and experience the difference. You will find quality care in our well-appointed office that provides comfort no matter which services you require. Whether you are in for a routine care visit or redesigning your smile with cutting-edge technology, it is our goal to help you have your best dental experience ever!",
         "Services": ["Emergency Dentistry", "Cosmetic Dentistry"],
         "InsuranceProviders": ["Sunlife", "Aetna", "Great-West Life", "Desjardins"],
-        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688743/Wall_center_dental_-_front_suaghn.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_reception_f02z1w.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/Wall_center_dental_-_exam_room_l0kdyo.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_exam_room_2_rcelvt.jpg"]
+        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688743/Wall_center_dental_-_front_suaghn.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_reception_f02z1w.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/Wall_center_dental_-_exam_room_l0kdyo.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_exam_room_2_rcelvt.jpg"],
+        loc: [-123.12587610000003, 49.2801176]
       }
     },
     {
@@ -135,7 +142,7 @@ var data = {
       "Languages": ["English"],
       "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688729/Dr_Reskovich_cbsvqg.jpg"],
       "Practice": {
-        "Name": "Wall Center Dental",
+        "Name": "Wall Centre Dental",
         "Address": "1065 Hornby St, Vancouver, BC V6Z 2S5",
         "Neighborhood": "Vancouver Downtown",
         "City": "Vancouver",
@@ -143,7 +150,8 @@ var data = {
         "Description": "We invite you to become a part of our practice and experience the difference. You will find quality care in our well-appointed office that provides comfort no matter which services you require. Whether you are in for a routine care visit or redesigning your smile with cutting-edge technology, it is our goal to help you have your best dental experience ever!",
         "Services": ["Emergency Dentistry", "Cosmetic Dentistry"],
         "InsuranceProviders": ["Sunlife", "Aetna", "Great-West Life", "Desjardins"],
-        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688743/Wall_center_dental_-_front_suaghn.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_reception_f02z1w.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/Wall_center_dental_-_exam_room_l0kdyo.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_exam_room_2_rcelvt.jpg"]
+        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688743/Wall_center_dental_-_front_suaghn.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_reception_f02z1w.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/Wall_center_dental_-_exam_room_l0kdyo.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_exam_room_2_rcelvt.jpg"],
+        loc: [-123.12587610000003, 49.2801176]
       }
     },
     {
@@ -155,7 +163,7 @@ var data = {
       "Languages": ["English"],
       "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688729/Dr_Boyd_cnshxs.jpg"],
       "Practice": {
-        "Name": "Wall Center Dental",
+        "Name": "Wall Centre Dental",
         "Address": "1065 Hornby St, Vancouver, BC V6Z 2S5",
         "Neighborhood": "Vancouver Downtown",
         "City": "Vancouver",
@@ -163,7 +171,8 @@ var data = {
         "Description": "We invite you to become a part of our practice and experience the difference. You will find quality care in our well-appointed office that provides comfort no matter which services you require. Whether you are in for a routine care visit or redesigning your smile with cutting-edge technology, it is our goal to help you have your best dental experience ever!",
         "Services": ["Emergency Dentistry", "Cosmetic Dentistry"],
         "InsuranceProviders": ["Sunlife", "Aetna", "Great-West Life", "Desjardins"],
-        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688743/Wall_center_dental_-_front_suaghn.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_reception_f02z1w.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/Wall_center_dental_-_exam_room_l0kdyo.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_exam_room_2_rcelvt.jpg"]
+        "ImageUrls": ["http://res.cloudinary.com/carecru/image/upload/v1452688743/Wall_center_dental_-_front_suaghn.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_reception_f02z1w.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/Wall_center_dental_-_exam_room_l0kdyo.jpg", "http://res.cloudinary.com/carecru/image/upload/v1452688739/wall_center_dental_-_exam_room_2_rcelvt.jpg"],
+        loc: [-123.12587610000003, 49.2801176]
       }
     },
   ]

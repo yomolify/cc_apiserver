@@ -8,9 +8,15 @@ var Router = require('express')
 var router = new Router
 
 router.get('/', function (req, res) {
+  var lng = req.query.lng;
+  var lat = req.query.lat;
+  console.log(typeof lng)
+  console.log('lnglat', lng)
+  console.log('lnglat', lat)
   Practitioner
-  .find({})
+  .find({'Practice.loc': {$near: [lng, lat], $maxDistance: 500}})
   .exec(function(err, data) {
+    data.reverse();
     data.Time = req.query.time || (new Date).toISOString()
     populateSlotsforPracs(data).then(function(data){
       res.locals.data = {Practitioners: data}

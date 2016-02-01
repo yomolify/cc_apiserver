@@ -31,6 +31,10 @@ var practiceSchema = new Schema({
   },
   ImageUrls: {
     type: [String]
+  },
+  loc: {
+    type: [Number],
+    index: '2d'
   }
 })
 
