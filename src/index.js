@@ -37,6 +37,6 @@ app.use('/api', apiV1)
 
 app.use(response.catchErrors)
 
-var PORT = process.env.CC_USER_API_PORT || 4000
+var PORT = process.env.CC_USER_API_PORT || 3030
 app.listen(PORT)
 console.log(`app listening on ${PORT}`)

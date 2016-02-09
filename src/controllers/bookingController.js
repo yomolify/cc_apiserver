@@ -18,11 +18,13 @@ function authenticate (req, res, next){
 }
 
 function create (req, res, next) {
+  console.log('slot is ', req.body._slot)
   Slot.findById(req.body._slot).exec(function(err, slot){
     if (err) {
       return next(err)
     }
     if (!slot || !slot.available){
+      console.log('slot is ', slot)
       console.log('padaake')
       return next(httpCodes('notFound'))
     }

@@ -17,6 +17,10 @@ var practiceSchema = new Schema({
     type: String,
     required: true
   },
+  Province: {
+    type: String,
+    required: true
+  },
   Description: {
     type: String,
     required: true
