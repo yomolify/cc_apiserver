@@ -18,33 +18,46 @@ function authenticate (req, res, next){
 }
 
 function create (req, res, next) {
-  console.log('slot is ', req.body._slot)
-  Slot.findById(req.body._slot).exec(function(err, slot){
+  var time = req.body._slot;
+  var practitioner = req.body._practitioner;
+  var user = req.decodedToken._id;
+  Slot.create({bookingTime: time, _practitioner: practitioner, available: false, _user: user}, function(err, slot) {
     if (err) {
-      return next(err)
+      console.log(err)
     }
-    if (!slot || !slot.available){
-      console.log('slot is ', slot)
-      console.log('padaake')
-      return next(httpCodes('notFound'))
-    }
-
-    slot._user = req.decodedToken._id
-    // slot.patient = req.body.patient
-    slot.available = false
-    slot.save(function(err){
-      if (err) {
-        return next(httpCodes('serverError'))
-      }
-      Slot.findById(slot).populate('_practitioner').populate('_user').exec(function (err, slot) {
-      var slotData = slot.toJSON()
-      res.locals.data = slotData
-      respond.sendSuccess(res)
-      sendEmail(req.decodedToken, slotData)
-      })
+    Slot.findById(slot._id).populate('_practitioner').populate('_user').exec(function (err, slot) {
+    var slotData = slot.toJSON()
+    res.locals.data = slotData
+    respond.sendSuccess(res)
+    sendEmail(req.decodedToken, slotData)
     })
   })
 }
+  // Slot.findById(req.body._slot).exec(function(err, slot){
+  //   if (err) {
+  //     return next(err)
+  //   }
+  //   if (!slot || !slot.available){
+  //     console.log('slot is ', slot)
+  //     console.log('padaake')
+  //     return next(httpCodes('notFound'))
+  //   }
+
+  //   slot._user = req.decodedToken._id
+  //   // slot.patient = req.body.patient
+  //   slot.available = false
+  //   slot.save(function(err){
+  //     if (err) {
+  //       return next(httpCodes('serverError'))
+  //     }
+  //     Slot.findById(slot).populate('_practitioner').populate('_user').exec(function (err, slot) {
+  //     var slotData = slot.toJSON()
+  //     res.locals.data = slotData
+  //     respond.sendSuccess(res)
+  //     sendEmail(req.decodedToken, slotData)
+  //     })
+  //   })
+  // })
 
 // function edit (req, res, next) {
 //   Slot.findById(req.body._slot).exec(function(err, slot){
