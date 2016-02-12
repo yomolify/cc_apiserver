@@ -23,7 +23,7 @@ var userSchema = new Schema({
   phone:{
     type: String
   },
-  password: {
+  password: { 
     type: String,
     required: true,
   },
