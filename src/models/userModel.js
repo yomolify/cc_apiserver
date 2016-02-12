@@ -23,14 +23,6 @@ var userSchema = new Schema({
   phone:{
     type: String
   },
-  gender: {
-    type: String,
-    required: true
-  },
-  dob: {
-    type: String,
-    required: true
-  },
   password: {
     type: String,
     required: true,
