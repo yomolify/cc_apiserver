@@ -1,4 +1,5 @@
 var Slot = require('../models/slotModel')
+var User = require('../models/userModel')
 var mailgun = require('../helpers/emailHelper')
 var httpCodes = require('../helpers/httpCodesHelper')
 var respond = require('../helpers/responseHelper')
@@ -20,16 +21,20 @@ function authenticate (req, res, next){
 function create (req, res, next) {
   var time = req.body._slot;
   var practitioner = req.body._practitioner;
+  var lastBooked = req.body.lastBooked;
   var user = req.decodedToken._id;
   Slot.create({bookingTime: time, _practitioner: practitioner, available: false, _user: user}, function(err, slot) {
     if (err) {
       console.log(err)
     }
+    User.findByIdAndUpdate(user, {lastBooked: lastBooked}, function(err, updated){
+      console.log('updated user', updated);
+    })
     Slot.findById(slot._id).populate('_practitioner').populate('_user').exec(function (err, slot) {
-    var slotData = slot.toJSON()
-    res.locals.data = slotData
-    respond.sendSuccess(res)
-    sendEmail(req.decodedToken, slotData)
+      var slotData = slot.toJSON()
+      res.locals.data = slotData
+      respond.sendSuccess(res)
+      sendEmail(req.decodedToken, slotData)
     })
   })
 }

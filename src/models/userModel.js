@@ -23,13 +23,16 @@ var userSchema = new Schema({
   phone:{
     type: String
   },
-  password: { 
+  password: {
     type: String,
     required: true,
   },
   emailVerified: {
     type: Boolean,
     default: false
+  },
+  lastBooked: {
+    type: 'string'
   }
 });
 
@@ -67,6 +70,7 @@ userSchema.set('toJSON', {
     returnDoc.lastName = ret.lastName
     returnDoc.phone = ret.phone
     returnDoc.dob = ret.dob
+    returnDoc.lastBooked = ret.lastBooked
     return returnDoc
   }
 });
